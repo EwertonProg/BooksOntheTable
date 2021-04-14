@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Books On The Table</string>
+    <string name="title_activity_access_nav_host">AccessNavHostActivity</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="sign_in">Entrar</string>
+    <string name="sing_up_request">Não tem conta? Registre-se</string>
+    <string name="sing_up">REGISTRAR</string>
+    <string name="full_name">Fullname</string>
+    <string name="confirm_password">Confirma senha</string>
+    <string name="app_logo_content_description">App logo</string>
+    <string name="forget_password">Esqueceu a senha?</string>
+    <string name="title_activity_internal_nav_host">InternalNavHostActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="reading">LENDO</string>
+    <string name="to_read">PARA LER</string>
+    <string name="read">JÁ LIDOS</string>
+    <string name="book_author_label">Autor:</string>
+    <string name="book_gender_label">Gênero:</string>
+    <string name="book_status_label">Status:</string>
+    <string name="mark_as">Marcar como %s</string>
+    <string name="title_book">Título do livro</string>
+    <string name="author_name">Nome do autor</string>
+    <string name="select_gender">Selecione o gênero</string>
+    <string name="select_status">Selecione o status</string>
+    <string name="register_book">Cadastrar Livro</string>
+    <string name="save">Salvar</string>
+
+</resources>

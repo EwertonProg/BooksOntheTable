@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.solutis.ewerton.booksonthetable.ui.activity.access.sign_in.SignInViewModel" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.activity.access.sign_in.SignInFragment">
+
+            <include android:id="@+id/top_banner_include" layout="@layout/top_banner_app_layout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_margin="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintVertical_bias="0.15"
+                app:layout_constraintBottom_toTopOf="@id/password_input_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/top_banner_include"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:shapeAppearanceOverlay="@style/RoundedInputLayout"
+                app:startIconDrawable="@drawable/ic_outline_person_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.user.email}"
+                    android:textColorHint="@color/app_gray">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_input_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:hint="@string/password"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/email_text_input"
+                app:layout_constraintStart_toStartOf="@id/email_text_input"
+                app:layout_constraintTop_toBottomOf="@id/email_text_input"
+                app:shapeAppearanceOverlay="@style/RoundedInputLayout"
+                app:startIconDrawable="@drawable/ic_outline_vpn_key_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.user.password}"
+                    android:textColorHint="@color/app_gray" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/forget_password_text_view"
+                app:layout_constraintEnd_toEndOf="@id/password_input_text"
+                app:layout_constraintTop_toBottomOf="@id/password_input_text"
+                android:text="@string/forget_password"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/main"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="@string/sign_in"
+                android:onClick="@{()-> viewModel.signIn()}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/email_text_input"
+                app:layout_constraintStart_toStartOf="@id/email_text_input"
+                app:layout_constraintTop_toBottomOf="@id/forget_password_text_view"
+                app:shapeAppearanceOverlay="@style/RoundedInputLayout" />
+
+            <TextView
+                android:id="@+id/sign_up_request_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/sign_in_button"
+                app:layout_constraintStart_toStartOf="@id/sign_in_button"
+                app:layout_constraintTop_toBottomOf="@id/sign_in_button"
+                tools:text="@string/sing_up_request" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

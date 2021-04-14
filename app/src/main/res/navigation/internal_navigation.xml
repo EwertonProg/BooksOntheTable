@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/internal_navigation"
+    app:startDestination="@id/userHomeFragment">
+
+    <fragment
+        android:id="@+id/userHomeFragment"
+        android:name="com.solutis.ewerton.booksonthetable.ui.activity.internal.user_home.UserHomeFragment"
+        android:label="UserHomeFragment"
+        tools:layout="@layout/fragment_user_home">
+
+        <action
+            android:id="@+id/action_userHomeFragment_to_viewBookFragment"
+            app:destination="@id/viewBookFragment" />
+
+        <action
+            android:id="@+id/action_userHomeFragment_to_maintainBookFragment"
+            app:destination="@id/maintainBookFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewBookFragment"
+        android:name="com.solutis.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookFragment"
+        android:label="ViewBookFragment"
+        tools:layout="@layout/fragment_view_book">
+
+        <action
+            android:id="@+id/action_viewBookFragment_to_maintainBookFragment"
+            app:destination="@id/maintainBookFragment" />
+
+        <argument
+            android:name="book"
+            app:argType="com.solutis.ewerton.booksonthetable.model.Book"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/maintainBookFragment"
+        android:name="com.solutis.ewerton.booksonthetable.ui.activity.internal.maintain_book.MaintainBookFragment"
+        android:label="MaintainBookFragment"
+        tools:layout="@layout/fragment_maintain_book">
+
+        <argument
+            android:name="book"
+            app:argType="com.solutis.ewerton.booksonthetable.model.Book"
+            app:nullable="true" />
+    </fragment>
+</navigation>
