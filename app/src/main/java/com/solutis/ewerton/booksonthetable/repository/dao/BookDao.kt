@@ -3,6 +3,7 @@ package com.solutis.ewerton.booksonthetable.repository.dao
 import androidx.room.*
 import com.solutis.ewerton.booksonthetable.model.Book
 import com.solutis.ewerton.booksonthetable.model.BookStatus
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookDao {
@@ -16,10 +17,10 @@ interface BookDao {
     suspend fun update(book: Book)
 
     @Query("SELECT * FROM book WHERE book.id =:id")
-    suspend fun findById(id: Long): Book?
+    fun findById(id: Long): Flow<Book?>
 
     @Query("SELECT * FROM book WHERE book.status like :status")
-    suspend fun getAllBooksByStatus(status: BookStatus): MutableList<Book?>
+    fun getAllBooksByStatus(status: BookStatus): Flow<MutableList<Book?>>
 
     @Query("DELETE FROM book")
     suspend fun clear()

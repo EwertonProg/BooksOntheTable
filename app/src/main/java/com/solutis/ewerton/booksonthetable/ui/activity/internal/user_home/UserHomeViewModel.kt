@@ -1,12 +1,11 @@
 package com.solutis.ewerton.booksonthetable.ui.activity.internal.user_home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.solutis.ewerton.booksonthetable.model.Book
 import com.solutis.ewerton.booksonthetable.model.BookStatus
 import com.solutis.ewerton.booksonthetable.repository.BookRepository
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class UserHomeViewModel(private val bookRepository: BookRepository) : ViewModel() {
@@ -24,19 +23,25 @@ class UserHomeViewModel(private val bookRepository: BookRepository) : ViewModel(
 
     fun getAllBooksReading(){
         viewModelScope.launch {
-            _readingBooks.value = bookRepository.getAllBooksReading()
+             bookRepository.getAllBooksReading().collect {
+                 _readingBooks.value = it
+            }
         }
     }
 
     fun getAllBooksRead(){
         viewModelScope.launch {
-            _readBooks.value = bookRepository.getAllBooksRead()
+             bookRepository.getAllBooksRead().collect {
+            _readBooks.value = it
+            }
         }
     }
 
     fun getAllBooksToRead(){
         viewModelScope.launch {
-            _booksToRead.value = bookRepository.getAllBooksToRead()
+             bookRepository.getAllBooksToRead().collect {
+                 _booksToRead.value = it
+            }
         }
     }
 

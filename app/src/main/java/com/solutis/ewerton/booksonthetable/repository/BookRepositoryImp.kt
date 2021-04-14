@@ -3,6 +3,8 @@ package com.solutis.ewerton.booksonthetable.repository
 import com.solutis.ewerton.booksonthetable.model.Book
 import com.solutis.ewerton.booksonthetable.model.BookStatus
 import com.solutis.ewerton.booksonthetable.repository.dao.BookDao
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 class BookRepositoryImp(private val dao: BookDao) : BookRepository{
     override suspend fun insert(book: Book): Long {
@@ -17,19 +19,19 @@ class BookRepositoryImp(private val dao: BookDao) : BookRepository{
         dao.update(book)
     }
 
-    override suspend fun findById(id: Long): Book? {
-        return dao.findById(id)
+    override fun findById(id: Long): Flow<Book?> {
+        return dao.findById(id).distinctUntilChanged()
     }
 
-    override suspend fun getAllBooksReading(): MutableList<Book?> {
+    override fun getAllBooksReading(): Flow<MutableList<Book?>> {
         return dao.getAllBooksByStatus(BookStatus.READING)
     }
 
-    override suspend fun getAllBooksRead(): MutableList<Book?> {
+    override fun getAllBooksRead(): Flow<MutableList<Book?>> {
        return dao.getAllBooksByStatus(BookStatus.READ)
     }
 
-    override suspend fun getAllBooksToRead(): MutableList<Book?> {
+    override fun getAllBooksToRead(): Flow<MutableList<Book?>> {
        return dao.getAllBooksByStatus(BookStatus.TO_READ)
     }
 

@@ -1,6 +1,7 @@
 package com.solutis.ewerton.booksonthetable.repository
 
 import com.solutis.ewerton.booksonthetable.model.Book
+import kotlinx.coroutines.flow.Flow
 
 interface BookRepository {
     suspend fun insert(book: Book): Long
@@ -9,13 +10,13 @@ interface BookRepository {
 
     suspend fun update(book: Book)
 
-    suspend fun findById(id: Long): Book?
+    fun findById(id: Long): Flow<Book?>
 
-    suspend fun getAllBooksReading(): MutableList<Book?>
+    fun getAllBooksReading(): Flow<MutableList<Book?>>
 
-    suspend fun getAllBooksRead(): MutableList<Book?>
+    fun getAllBooksRead(): Flow<MutableList<Book?>>
 
-    suspend fun getAllBooksToRead(): MutableList<Book?>
+    fun getAllBooksToRead(): Flow<MutableList<Book?>>
 
     suspend fun clear()
 }
