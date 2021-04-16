@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.solutis.ewerton.booksonthetable.R
 import com.solutis.ewerton.booksonthetable.databinding.FragmentViewBookBinding
@@ -22,12 +23,37 @@ class ViewBookFragment : BaseFragment<FragmentViewBookBinding>(R.layout.fragment
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        val book = args.book
         binding.viewModel = viewModel
-        viewModel.book.value = book
-        setupChangeStatusButtonVisibility(book)
-        setTitle(book.name)
+        viewModel.getBook(args.book.id)
+        setBookLiveDataObserver()
+        setOnEditBookClickListener()
+        setOnDeleteBookObserver()
         return binding.root
+    }
+
+    private fun setBookLiveDataObserver() {
+        viewModel.book.observe(viewLifecycleOwner, {
+            it?.let {
+                setupChangeStatusButtonVisibility(it)
+                setTitle(it.name)
+            }
+        })
+    }
+
+    private fun setOnEditBookClickListener() {
+        binding.editBookButton.setOnClickListener {
+            findNavController().navigate(
+                ViewBookFragmentDirections.actionViewBookFragmentToMaintainBookFragment(
+                    viewModel.book.value
+                )
+            )
+        }
+    }
+
+    private fun setOnDeleteBookObserver() {
+        viewModel.deleteReturn.observe(viewLifecycleOwner, {
+            findNavController().popBackStack()
+        })
     }
 
     private fun setupChangeStatusButtonVisibility(book: Book) {
@@ -35,7 +61,7 @@ class ViewBookFragment : BaseFragment<FragmentViewBookBinding>(R.layout.fragment
             if (book.status == BookStatus.READ) View.GONE else View.VISIBLE
     }
 
-    private fun setTitle(title:String?){
+    private fun setTitle(title: String?) {
         binding.title.titleTextView.text = title
     }
 }

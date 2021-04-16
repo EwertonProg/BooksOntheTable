@@ -28,6 +28,12 @@
     <string name="select_gender">Selecione o gênero</string>
     <string name="select_status">Selecione o status</string>
     <string name="register_book">Cadastrar Livro</string>
+    <string name="edit_book">Editar Livro</string>
     <string name="save">Salvar</string>
+    <string name="edit">Editar</string>
+    <string name="edition_button">Botão que edita o livro</string>
+    <string name="delete_button">Botão que exclue o livro</string>
+    <string name="genero">Gênero</string>
+    <string name="status">Status</string>
 
 </resources>

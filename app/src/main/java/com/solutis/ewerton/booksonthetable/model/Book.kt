@@ -17,6 +17,13 @@ data class Book(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L
 ):Parcelable{
+
+    var statusByName: String?
+        get() = status?.statusName
+        set(value) {
+            status = value?.let { BookStatus.getByStatusName(it) }
+        }
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -51,10 +58,11 @@ data class Book(
     }
 
     fun getNextStatusName():String{
-        if(status == BookStatus.READ){
+        if(status == BookStatus.READ || status == null){
             return ""
         }
-        return BookStatus.values()[status?.ordinal?.plus(1)!!].statusName
+        return BookStatus.values()[status!!.ordinal.plus(1)].statusName
+
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

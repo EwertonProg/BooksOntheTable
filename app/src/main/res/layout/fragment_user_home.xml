@@ -54,16 +54,16 @@
                 android:layout_height="wrap_content">
 
                 <include
-                    android:id="@+id/reading_section"
+                    android:id="@+id/to_read_section"
                     layout="@layout/status_book_recycler_view_layout"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reading_section"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
                 <include
-                    android:id="@+id/to_read_section"
+                    android:id="@+id/reading_section"
                     layout="@layout/status_book_recycler_view_layout"
-                    app:layout_constraintTop_toBottomOf="@id/reading_section"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 

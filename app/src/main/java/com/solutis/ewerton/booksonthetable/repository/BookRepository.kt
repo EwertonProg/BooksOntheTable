@@ -4,11 +4,9 @@ import com.solutis.ewerton.booksonthetable.model.Book
 import kotlinx.coroutines.flow.Flow
 
 interface BookRepository {
-    suspend fun insert(book: Book): Long
+    suspend fun persist(book: Book): Book
 
     suspend fun delete(book: Book)
-
-    suspend fun update(book: Book)
 
     fun findById(id: Long): Flow<Book?>
 

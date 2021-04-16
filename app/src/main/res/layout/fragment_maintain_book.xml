@@ -30,12 +30,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/title_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/title_book"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/title_text_input"
+                    app:layout_constraintStart_toStartOf="@id/title_text_input" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/title_text_input"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_margin="16dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="16dp"
                     app:hintEnabled="false"
                     app:layout_constraintBottom_toTopOf="@id/author_text_input"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +61,6 @@
                         android:id="@+id/title_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/title_book"
                         android:inputType="text"
                         android:text="@={viewModel.book.name}"
                         android:textColorHint="@color/app_gray">
@@ -58,12 +69,24 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/author_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/author_name"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/author_text_input"
+                    app:layout_constraintStart_toStartOf="@id/author_text_input" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/author_text_input"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_margin="16dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="16dp"
                     app:hintEnabled="false"
                     app:layout_constraintBottom_toTopOf="@id/gender_text_input"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -76,21 +99,32 @@
                         android:id="@+id/author_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/author_name"
                         android:inputType="textPersonName"
-                        android:text="@={viewModel.book.name}"
+                        android:text="@={viewModel.book.author}"
                         android:textColorHint="@color/app_gray">
 
                     </com.google.android.material.textfield.TextInputEditText>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/gender_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/select_gender"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/gender_text_input"
+                    app:layout_constraintStart_toStartOf="@id/gender_text_input" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/gender_text_input"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_margin="16dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="16dp"
                     app:hintEnabled="false"
                     app:layout_constraintBottom_toTopOf="@id/status_text_input"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -99,55 +133,67 @@
                     app:layout_constraintVertical_bias="0.15"
                     app:shapeAppearanceOverlay="@style/RoundedInputLayout">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/gender_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/select_gender"
+                        android:inputType="none"
                         android:text="@={viewModel.book.gender}"
-                        android:textColorHint="@color/app_gray">
-
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:textColorHint="@color/app_gray"
+                        android:hint="@string/genero"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/status_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="3dp"
+                    android:text="@string/select_status"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toTopOf="@id/status_text_input"
+                    app:layout_constraintStart_toStartOf="@id/status_text_input" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/status_text_input"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_margin="16dp"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="16dp"
                     app:hintEnabled="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/persist_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/gender_text_input"
                     app:layout_constraintVertical_bias="0.15"
                     app:shapeAppearanceOverlay="@style/RoundedInputLayout">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/status_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/select_status"
-                        android:text="@={viewModel.book.name}"
-                        android:textColorHint="@color/app_gray">
-
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:inputType="none"
+                        android:text="@={viewModel.book.statusByName}"
+                        android:textColorHint="@color/app_gray"
+                        android:hint="@string/status"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/sign_in_button"
+                    android:id="@+id/persist_button"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
-                    android:text="@string/save"
+                    tools:text="@string/save"
+                    android:onClick="@{()-> viewModel.persistBook()}"
                     android:textColor="@color/white"
+                    android:layout_marginBottom="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/status_text_input"
                     app:layout_constraintStart_toStartOf="@id/status_text_input"
-                    app:layout_constraintTop_toBottomOf="@id/status_text_input"
-                    app:layout_constraintVertical_bias="0.9"
                     app:shapeAppearanceOverlay="@style/RoundedInputLayout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

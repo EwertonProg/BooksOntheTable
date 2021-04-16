@@ -89,6 +89,6 @@ val viewModelModule = module {
     viewModel { SignInViewModel(userRepository = get()) }
     viewModel { SignUpViewModel(userRepository = get()) }
     viewModel { UserHomeViewModel(bookRepository = get()) }
-    viewModel { ViewBookViewModel() }
-    viewModel { MaintainBookViewModel() }
+    viewModel { ViewBookViewModel(bookRepository = get()) }
+    viewModel { MaintainBookViewModel(bookRepository = get()) }
 }

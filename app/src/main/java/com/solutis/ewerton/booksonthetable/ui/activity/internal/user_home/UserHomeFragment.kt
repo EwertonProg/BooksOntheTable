@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.solutis.ewerton.booksonthetable.R
 import com.solutis.ewerton.booksonthetable.databinding.FragmentUserHomeBinding
+import com.solutis.ewerton.booksonthetable.model.Book
 import com.solutis.ewerton.booksonthetable.ui.BaseFragment
 import com.solutis.ewerton.booksonthetable.ui.activity.internal.user_home.adapter.BookItemAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,11 +21,9 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(R.layout.fragment
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        viewModel.populateDatabase()
         setupReadingBooksSection()
         setupToReadBooksSection()
         setupReadBooksSection()
-        getAllBooks()
         setNavigationOnClickOnAddBook()
         return binding.root
     }
@@ -37,13 +36,6 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(R.layout.fragment
                 )
             )
         }
-    }
-
-
-    private fun getAllBooks() {
-        viewModel.getAllBooksRead()
-        viewModel.getAllBooksReading()
-        viewModel.getAllBooksToRead()
     }
 
     private fun setupReadingBooksSection() {
