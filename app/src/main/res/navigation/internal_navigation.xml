@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userHomeFragment"
-        android:name="com.solutis.ewerton.booksonthetable.ui.activity.internal.user_home.UserHomeFragment"
+        android:name="com.android.ewerton.booksonthetable.ui.activity.internal.user_home.UserHomeFragment"
         android:label="UserHomeFragment"
         tools:layout="@layout/fragment_user_home">
 
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/viewBookFragment"
-        android:name="com.solutis.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookFragment"
+        android:name="com.android.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookFragment"
         android:label="ViewBookFragment"
         tools:layout="@layout/fragment_view_book">
 
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/maintainBookFragment"
-        android:name="com.solutis.ewerton.booksonthetable.ui.activity.internal.maintain_book.MaintainBookFragment"
+        android:name="com.android.ewerton.booksonthetable.ui.activity.internal.maintain_book.MaintainBookFragment"
         android:label="MaintainBookFragment"
         tools:layout="@layout/fragment_maintain_book">
 

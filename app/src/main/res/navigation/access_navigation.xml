@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.solutis.ewerton.booksonthetable.ui.activity.access.sign_in.SignInFragment"
+        android:name="com.android.ewerton.booksonthetable.ui.activity.access.sign_in.SignInFragment"
         tools:layout="@layout/fragment_sign_in"
         android:label="SignInFragment" >
         <action
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.solutis.ewerton.booksonthetable.ui.activity.access.sign_up.SignUpFragment"
+        android:name="com.android.ewerton.booksonthetable.ui.activity.access.sign_up.SignUpFragment"
         tools:layout="@layout/fragment_sign_up"
         android:label="SignUpFragment" >
     </fragment>

@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.solutis.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookViewModel" />
+            type="com.android.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookViewModel" />
     </data>
 
 

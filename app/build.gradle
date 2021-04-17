@@ -10,7 +10,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.solutis.ewerton.booksonthetable"
+        applicationId 'com.android.ewerton.booksonthetable'
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

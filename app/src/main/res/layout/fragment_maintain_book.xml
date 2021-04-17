@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.solutis.ewerton.booksonthetable.ui.activity.internal.maintain_book.MaintainBookViewModel" />
+            type="com.android.ewerton.booksonthetable.ui.activity.internal.maintain_book.MaintainBookViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
