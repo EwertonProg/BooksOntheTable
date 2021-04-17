@@ -22,6 +22,8 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "API_URL", "\"http://7g57z.mocklab.io/\""
+            buildConfigField "String", "MAIN_SHARED_PREFERENCES_NAME", "\"MAIN_SHARED_PREFERENCES\""
+            buildConfigField "String", "MAIN_DATABASE_NAME", "\"books_on_the_table_database\""
             debuggable true
         }
         release {

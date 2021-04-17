@@ -1,6 +1,8 @@
 package com.android.ewerton.booksonthetable.di.module
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.android.ewerton.booksonthetable.BuildConfig
 import com.android.ewerton.booksonthetable.repository.BookRepository
@@ -10,6 +12,8 @@ import com.android.ewerton.booksonthetable.repository.UserRepositoryImp
 import com.android.ewerton.booksonthetable.repository.dao.BookDao
 import com.android.ewerton.booksonthetable.repository.dao.UserDao
 import com.android.ewerton.booksonthetable.repository.db.BooksOnTheTableDatabase
+import com.android.ewerton.booksonthetable.repository.sharedPreferences.AppSharedPreferences
+import com.android.ewerton.booksonthetable.repository.sharedPreferences.AppSharedPreferencesImp
 import com.android.ewerton.booksonthetable.repository.webservice.BookService
 import com.android.ewerton.booksonthetable.repository.webservice.interceptor.AuthInterceptor
 import com.android.ewerton.booksonthetable.ui.activity.access.sign_in.SignInViewModel
@@ -28,7 +32,7 @@ val databaseModule = module {
         return Room.databaseBuilder(
             application,
             BooksOnTheTableDatabase::class.java,
-            "books_on_the_table_database"
+            BuildConfig.MAIN_DATABASE_NAME
         ).fallbackToDestructiveMigration()
             .build()
     }
@@ -91,4 +95,15 @@ val viewModelModule = module {
     viewModel { UserHomeViewModel(bookRepository = get()) }
     viewModel { ViewBookViewModel(bookRepository = get()) }
     viewModel { MaintainBookViewModel(bookRepository = get()) }
+}
+
+val sharedPreferenceModule = module {
+    fun provideSharedPreferences(application: Application) =
+        application.getSharedPreferences(
+            BuildConfig.MAIN_SHARED_PREFERENCES_NAME,
+            Context.MODE_PRIVATE
+        )
+
+    single<SharedPreferences> { provideSharedPreferences(get()) }
+    single<AppSharedPreferences> { AppSharedPreferencesImp(get()) }
 }

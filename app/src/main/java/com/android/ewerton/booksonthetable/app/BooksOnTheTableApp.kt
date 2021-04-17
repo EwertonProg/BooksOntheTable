@@ -18,6 +18,7 @@ class BooksOnTheTableApp :Application(){
                 viewModelModule,
                 networkModule,
                 apiModule,
+                sharedPreferenceModule,
             )
         }
     }
