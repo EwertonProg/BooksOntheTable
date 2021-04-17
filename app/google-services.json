@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "743013129474",
+    "project_id": "booksonthetable-ed639",
+    "storage_bucket": "booksonthetable-ed639.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743013129474:android:d52781c41b489a81b0361b",
+        "android_client_info": {
+          "package_name": "com.android.ewerton.booksonthetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743013129474-i6qepmk0ijrimdg733oirc95sdfq1au2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUE1l_5vljROzRjMe9FJuBZwGEfkn9B_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743013129474-i6qepmk0ijrimdg733oirc95sdfq1au2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
