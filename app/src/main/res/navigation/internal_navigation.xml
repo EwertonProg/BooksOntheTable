@@ -32,7 +32,7 @@
 
         <argument
             android:name="book"
-            app:argType="com.solutis.ewerton.booksonthetable.model.Book"
+            app:argType="com.android.ewerton.booksonthetable.model.Book"
             app:nullable="false" />
     </fragment>
 
@@ -51,7 +51,7 @@
 
         <argument
             android:name="book"
-            app:argType="com.solutis.ewerton.booksonthetable.model.Book"
+            app:argType="com.android.ewerton.booksonthetable.model.Book"
             app:nullable="true" />
     </fragment>
 </navigation>
