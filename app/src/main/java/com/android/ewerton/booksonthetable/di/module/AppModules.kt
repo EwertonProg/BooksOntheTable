@@ -1,5 +1,6 @@
 package com.android.ewerton.booksonthetable.di.module
 
+import com.android.ewerton.booksonthetable.repository.webservice.AuthServiceImp
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
@@ -14,6 +15,7 @@ import com.android.ewerton.booksonthetable.repository.dao.UserDao
 import com.android.ewerton.booksonthetable.repository.db.BooksOnTheTableDatabase
 import com.android.ewerton.booksonthetable.repository.sharedPreferences.AppSharedPreferences
 import com.android.ewerton.booksonthetable.repository.sharedPreferences.AppSharedPreferencesImp
+import com.android.ewerton.booksonthetable.repository.webservice.AuthService
 import com.android.ewerton.booksonthetable.repository.webservice.BookService
 import com.android.ewerton.booksonthetable.repository.webservice.interceptor.AuthInterceptor
 import com.android.ewerton.booksonthetable.ui.activity.access.sign_in.SignInViewModel
@@ -21,6 +23,7 @@ import com.android.ewerton.booksonthetable.ui.activity.access.sign_up.SignUpView
 import com.android.ewerton.booksonthetable.ui.activity.internal.maintain_book.MaintainBookViewModel
 import com.android.ewerton.booksonthetable.ui.activity.internal.user_home.UserHomeViewModel
 import com.android.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookViewModel
+import com.google.firebase.auth.FirebaseAuth
 import okhttp3.OkHttpClient
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -75,6 +78,7 @@ val networkModule = module {
     factory { AuthInterceptor() }
     single { provideOkHttpClient(get()) }
     single { provideRetrofit(get()) }
+    single<AuthService>{ AuthServiceImp(FirebaseAuth.getInstance()) }
 }
 
 val apiModule = module {
@@ -85,7 +89,7 @@ val apiModule = module {
 }
 
 val repositoryModule = module {
-    single<UserRepository> { UserRepositoryImp(get()) }
+    single<UserRepository> { UserRepositoryImp(get(),get(),get()) }
     single<BookRepository> { BookRepositoryImp(get()) }
 }
 

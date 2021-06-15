@@ -20,8 +20,7 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
         viewModelScope.launch {
             user.value?.let {
                 try {
-                    it.id = userRepository.saveUser(it)
-                    _signUpResult.value = Event(it.id > 0)
+                    _signUpResult.value = Event(userRepository.saveUser(it))
                 } catch (e: SQLiteException) {
                     _signUpResult.value = Event(false)
                 }

@@ -11,6 +11,7 @@ import com.android.ewerton.booksonthetable.R
 import com.android.ewerton.booksonthetable.databinding.FragmentSignInBinding
 import com.android.ewerton.booksonthetable.ui.BaseFragment
 import com.android.ewerton.booksonthetable.ui.activity.internal.InternalNavHostActivity
+import com.android.ewerton.booksonthetable.ui.util.setColorizedText
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {

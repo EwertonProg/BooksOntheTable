@@ -9,6 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.android.ewerton.booksonthetable.R
 import com.android.ewerton.booksonthetable.databinding.FragmentSignUpBinding
 import com.android.ewerton.booksonthetable.ui.BaseFragment
+import com.android.ewerton.booksonthetable.ui.util.isValidAsEmail
+import com.android.ewerton.booksonthetable.ui.util.isValidAsName
+import com.android.ewerton.booksonthetable.ui.util.isValidAsPassword
+import com.android.ewerton.booksonthetable.ui.util.validateOnLostFocus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sign_up) {

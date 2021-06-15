@@ -1,6 +1,6 @@
 package com.android.ewerton.booksonthetable.repository.sharedPreferences
 
 interface AppSharedPreferences {
-    fun saveSignedUserUid(uid: String)
-    fun getSignedUserUid(): String
+    suspend fun saveSignedUserUid(uid: String)
+    suspend fun getSignedUserUid(): String
 }
