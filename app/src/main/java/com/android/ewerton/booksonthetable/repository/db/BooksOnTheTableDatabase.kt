@@ -9,7 +9,7 @@ import com.android.ewerton.booksonthetable.repository.dao.BookDao
 import com.android.ewerton.booksonthetable.repository.dao.UserDao
 import com.android.ewerton.booksonthetable.repository.db.converters.BookStatusConverter
 
-@Database(entities = [User::class, Book::class], version = 4, exportSchema = false)
+@Database(entities = [User::class, Book::class], version = 5, exportSchema = false)
 @TypeConverters(BookStatusConverter::class)
 abstract class BooksOnTheTableDatabase : RoomDatabase() {
     abstract val userDao: UserDao

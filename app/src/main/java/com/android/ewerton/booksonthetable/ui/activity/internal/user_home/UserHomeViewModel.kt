@@ -12,6 +12,12 @@ class UserHomeViewModel(private val bookRepository: BookRepository) : ViewModel(
     val readBooks: LiveData<MutableList<Book?>> = bookRepository.getAllBooksRead().asLiveData()
     val booksToRead: LiveData<MutableList<Book?>> = bookRepository.getAllBooksToRead().asLiveData()
 
+    fun getAllBooks(){
+        viewModelScope.launch {
+            bookRepository.getAllBooksFromRemote()
+        }
+    }
+
     fun populateDatabase(){
         viewModelScope.launch {
             bookRepository.persist(Book("Teste Para ler","da silva","Romance",BookStatus.TO_READ))

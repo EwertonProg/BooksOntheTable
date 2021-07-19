@@ -16,8 +16,8 @@ interface BookDao {
     @Update
     suspend fun update(book: Book)
 
-    @Query("SELECT * FROM book WHERE book.id =:id")
-    fun findById(id: Long): Flow<Book?>
+    @Query("SELECT * FROM book WHERE book.UUID =:UUID")
+    fun findByUUID(UUID: String): Flow<Book?>
 
     @Query("SELECT * FROM book WHERE book.status like :status")
     fun getAllBooksByStatus(status: BookStatus): Flow<MutableList<Book?>>

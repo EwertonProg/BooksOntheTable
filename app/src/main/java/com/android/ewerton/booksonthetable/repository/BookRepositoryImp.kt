@@ -3,27 +3,42 @@ package com.android.ewerton.booksonthetable.repository
 import com.android.ewerton.booksonthetable.model.Book
 import com.android.ewerton.booksonthetable.model.BookStatus
 import com.android.ewerton.booksonthetable.repository.dao.BookDao
+import com.android.ewerton.booksonthetable.repository.webservice.BookService
 import kotlinx.coroutines.flow.Flow
 
-class BookRepositoryImp(private val dao: BookDao) : BookRepository {
+class BookRepositoryImp(private val dao: BookDao, private val service: BookService) : BookRepository {
 
-    override suspend fun persist(book: Book): Book {
-        return if (book.id == 0L) {
-            book.apply {
-                id = dao.insert(book)
-            }
-        } else {
-            dao.update(book)
-            book
+    override suspend fun persist(book: Book): Book? {
+        return service.persistBook(book)?.let { savedBook ->
+            persistLocally(savedBook)
         }
     }
 
-    override suspend fun delete(book: Book) {
-        dao.delete(book)
+    private suspend fun persistLocally(
+        savedBook: Book
+    ) = savedBook.apply {
+        id = dao.insert(savedBook)
     }
 
-    override fun findById(id: Long): Flow<Book?> {
-        return dao.findById(id)
+
+    override suspend fun delete(book: Book) {
+        book.UUID?.let { uuid ->
+            service.deleteBook(uuid)
+            dao.delete(book)
+        }
+    }
+
+    override suspend fun getBookByUUID(UUID: String): Flow<Book?> {
+        return dao.findByUUID(UUID)
+    }
+
+    override suspend fun getAllBooksFromRemote() {
+        val books = service.getAllBooksForUser()
+        books.forEach {
+            it?.let {
+                persistLocally(it)
+            }
+        }
     }
 
     override fun getAllBooksReading(): Flow<MutableList<Book?>> {

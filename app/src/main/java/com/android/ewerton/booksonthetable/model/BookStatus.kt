@@ -1,7 +1,16 @@
 package com.android.ewerton.booksonthetable.model
 
+import com.google.gson.annotations.SerializedName
+
 enum class BookStatus(val statusName: String) {
-    TO_READ("Para Ler"), READING("Lendo"), READ("Lido");
+    @SerializedName("TO_READ")
+    TO_READ("Para Ler"),
+
+    @SerializedName("READING")
+    READING("Lendo"),
+
+    @SerializedName("READ")
+    READ("Lido");
 
     companion object{
         fun getByStatusName(statusName: String):BookStatus?{

@@ -24,7 +24,7 @@ class ViewBookFragment : BaseFragment<FragmentViewBookBinding>(R.layout.fragment
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding.viewModel = viewModel
-        viewModel.getBook(args.book.id)
+        args.book.UUID?.let { viewModel.getBook(it) }
         setBookLiveDataObserver()
         setOnEditBookClickListener()
         setOnDeleteBookObserver()

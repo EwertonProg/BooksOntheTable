@@ -25,10 +25,22 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding.viewModel = viewModel
+        handleHasLoggedUser()
+        viewModel.hasLoggedUser()
         configureOnClickOnSingUpRequestTextView()
         setSignUpRequestTextViewColorized()
         setOnSignInResultCallback()
         return binding.root
+    }
+
+    private fun handleHasLoggedUser() {
+        viewModel.hasLoggedUserResult.observe(viewLifecycleOwner, { event ->
+            event.getContentIfNotHandled()?.let {
+                if (it) {
+                    navigateInternalArea()
+                }
+            }
+        })
     }
 
     private fun setOnSignInResultCallback() {
@@ -37,12 +49,16 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
                 if (it) {
                     Toast.makeText(this.context, "Login realizado com sucesso!", Toast.LENGTH_LONG)
                         .show()
-                    startActivity(Intent(requireContext(),InternalNavHostActivity::class.java))
+                    navigateInternalArea()
                 } else {
                     Toast.makeText(this.context, "Login falhou!", Toast.LENGTH_LONG).show()
                 }
             }
         })
+    }
+
+    private fun navigateInternalArea() {
+        startActivity(Intent(requireContext(), InternalNavHostActivity::class.java))
     }
 
     private fun configureOnClickOnSingUpRequestTextView() {
@@ -56,7 +72,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         binding.signUpRequestTextView.setColorizedText(
             text,
             resources.getColor(R.color.main, null),
-            Pair(15,text.length)
+            Pair(15, text.length)
         )
     }
 }

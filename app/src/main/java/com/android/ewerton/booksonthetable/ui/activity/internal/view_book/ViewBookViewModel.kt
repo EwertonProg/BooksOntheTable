@@ -24,9 +24,9 @@ class ViewBookViewModel(private val bookRepository: BookRepository) : ViewModel(
         }
     }
 
-    fun getBook(id: Long){
+    fun getBook(UUID: String){
         viewModelScope.launch {
-            bookRepository.findById(id).collect {
+            bookRepository.getBookByUUID(UUID).collect {
                 _book.value = it
             }
         }

@@ -1,6 +1,5 @@
 package com.android.ewerton.booksonthetable.di.module
 
-import com.android.ewerton.booksonthetable.repository.webservice.AuthServiceImp
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
@@ -15,8 +14,7 @@ import com.android.ewerton.booksonthetable.repository.dao.UserDao
 import com.android.ewerton.booksonthetable.repository.db.BooksOnTheTableDatabase
 import com.android.ewerton.booksonthetable.repository.sharedPreferences.AppSharedPreferences
 import com.android.ewerton.booksonthetable.repository.sharedPreferences.AppSharedPreferencesImp
-import com.android.ewerton.booksonthetable.repository.webservice.AuthService
-import com.android.ewerton.booksonthetable.repository.webservice.BookService
+import com.android.ewerton.booksonthetable.repository.webservice.*
 import com.android.ewerton.booksonthetable.repository.webservice.interceptor.AuthInterceptor
 import com.android.ewerton.booksonthetable.ui.activity.access.sign_in.SignInViewModel
 import com.android.ewerton.booksonthetable.ui.activity.access.sign_up.SignUpViewModel
@@ -24,6 +22,8 @@ import com.android.ewerton.booksonthetable.ui.activity.internal.maintain_book.Ma
 import com.android.ewerton.booksonthetable.ui.activity.internal.user_home.UserHomeViewModel
 import com.android.ewerton.booksonthetable.ui.activity.internal.view_book.ViewBookViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import okhttp3.OkHttpClient
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -78,23 +78,19 @@ val networkModule = module {
     factory { AuthInterceptor() }
     single { provideOkHttpClient(get()) }
     single { provideRetrofit(get()) }
-    single<AuthService>{ AuthServiceImp(FirebaseAuth.getInstance()) }
-}
-
-val apiModule = module {
-    fun provideBookService(retrofit: Retrofit): BookService {
-        return retrofit.create(BookService::class.java)
-    }
-    single { provideBookService(get()) }
+    single { Firebase.firestore }
+    single<AuthService> { AuthServiceImp(FirebaseAuth.getInstance()) }
+    single<BookService> { BookServiceImp(get(), get()) }
+    single<UserService> { UserServiceImp(get()) }
 }
 
 val repositoryModule = module {
-    single<UserRepository> { UserRepositoryImp(get(),get(),get()) }
-    single<BookRepository> { BookRepositoryImp(get()) }
+    single<UserRepository> { UserRepositoryImp(get(), get(), get(), get(), get()) }
+    single<BookRepository> { BookRepositoryImp(get(), get()) }
 }
 
 val viewModelModule = module {
-    viewModel { SignInViewModel(userRepository = get()) }
+    viewModel { SignInViewModel(userRepository = get(), sharedPreferences = get()) }
     viewModel { SignUpViewModel(userRepository = get()) }
     viewModel { UserHomeViewModel(bookRepository = get()) }
     viewModel { ViewBookViewModel(bookRepository = get()) }

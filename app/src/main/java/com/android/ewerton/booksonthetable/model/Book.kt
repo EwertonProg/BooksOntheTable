@@ -2,21 +2,26 @@ package com.android.ewerton.booksonthetable.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "book", indices = [Index(value = ["name"], unique = true)])
+@Entity(tableName = "book", indices = [Index(value = ["name"], unique = true), Index(value = ["UUID"], unique = true)])
 data class Book(
     @ColumnInfo(name = "name")
-    var name: String?  = "",
+    var name: String? = "",
     @ColumnInfo(name = "author")
-    var author: String?  = "",
+    var author: String? = "",
     @ColumnInfo(name = "gender")
     var gender: String? = "",
     @ColumnInfo(name = "status")
-    var status: BookStatus?  = null,
+    var status: BookStatus? = null,
+    @ColumnInfo(name = "UUID")
+    var UUID: String? = null,
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0L
-):Parcelable{
+    var id: Long = 0L,
+) : Parcelable {
 
     var statusByName: String?
         get() = status?.statusName
@@ -24,52 +29,28 @@ data class Book(
             status = value?.let { BookStatus.getByStatusName(it) }
         }
 
+    fun getNextStatusName(): String {
+        if (status == BookStatus.READ || status == null) {
+            return ""
+        }
+        return BookStatus.values()[status!!.ordinal.plus(1)].statusName
+    }
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()?.let { BookStatus.valueOf(it) },
-        parcel.readLong()
-    ) {
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Book
-
-        if (name != other.name) return false
-        if (author != other.author) return false
-        if (gender != other.gender) return false
-        if (status != other.status) return false
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = name.hashCode()
-        result = 31 * result + author.hashCode()
-        result = 31 * result + gender.hashCode()
-        result = 31 * result + status.hashCode()
-        result = 31 * result + id.hashCode()
-        return result
-    }
-
-    fun getNextStatusName():String{
-        if(status == BookStatus.READ || status == null){
-            return ""
-        }
-        return BookStatus.values()[status!!.ordinal.plus(1)].statusName
-
-    }
+        parcel.readString(),
+        parcel.readLong(),
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(author)
         parcel.writeString(gender)
         parcel.writeString(this.status?.name)
+        parcel.writeString(UUID)
         parcel.writeLong(id)
     }
 

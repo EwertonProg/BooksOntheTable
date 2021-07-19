@@ -24,6 +24,7 @@ class UserHomeFragment : BaseFragment<FragmentUserHomeBinding>(R.layout.fragment
         setupToReadBooksSection()
         setupReadBooksSection()
         setNavigationOnClickOnAddBook()
+        viewModel.getAllBooks()
         return binding.root
     }
 
